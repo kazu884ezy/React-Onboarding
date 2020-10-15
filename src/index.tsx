@@ -1,12 +1,38 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from "redux-devtools-extension";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import * as serviceWorker from './serviceWorker';
+import rootReducer from './reducers';
+import App from "./App";
+
+const store = createStore(
+    rootReducer,
+    composeWithDevTools(applyMiddleware(thunk))
+);
+
+const theme = createMuiTheme({
+    spacing: 3,
+    palette: {
+        primary: {
+            main: "#28f8d9",
+        },
+        secondary: {
+            main: "#f66d37"
+        }
+    }
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider store={store}>
+          <ThemeProvider theme={theme}>
+              <App />
+          </ThemeProvider>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
