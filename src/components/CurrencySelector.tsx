@@ -5,7 +5,12 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import { currencies } from "../constants";
 
-const CurrencySelector = ({ onChange, initialValue='NZD'}) => {
+interface CurrencySelectorProps{
+    onChange : (value: string) => void;
+    initialValue : string;
+}
+
+const CurrencySelector = ({ onChange, initialValue='NZD'} : CurrencySelectorProps) => {
     const [selectedCurrency, setCurrency] = useState(initialValue);
 
     const handleChange = (event : React.ChangeEvent<{ value: unknown }>) => {

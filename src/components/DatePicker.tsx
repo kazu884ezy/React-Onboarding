@@ -8,8 +8,12 @@ import {
 } from '@material-ui/pickers';
 import {MaterialUiPickersDate} from "@material-ui/pickers/typings/date";
 
+interface DatePickerProps{
+    onChange : (value: Date) => void;
+    initialDate ?: Date;
+}
 
-const DatePicker = ({onChange, initialDate = new Date()}) => {
+const DatePicker = ({onChange, initialDate = new Date()} : DatePickerProps) => {
     const [selectedDate, setSelectedDate] = useState(initialDate);
 
     const handleDateChange = (muiDate: MaterialUiPickersDate) => {

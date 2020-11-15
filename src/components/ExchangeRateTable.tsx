@@ -9,7 +9,11 @@ import StripeTable from "./StripeTable";
 //     ['JPY', '0.03'],
 // ]
 
-const ExchangeRateTable = ({exchangeRates}) => {
+interface DatePickeExchangeRateTableProps {
+    exchangeRates : string[][]
+}
+
+const ExchangeRateTable = ({exchangeRates} : DatePickeExchangeRateTableProps) => {
     const renderResults = (dataArray: string[][]) => {
         return dataArray.map(data => {
             return (

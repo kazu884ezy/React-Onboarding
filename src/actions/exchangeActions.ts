@@ -16,7 +16,7 @@ export const setSelectedDate = (date : Date) => {
   };
 }
 
-const setExchangeRate = ratesForSpecificDay => {
+const setExchangeRate = (ratesForSpecificDay : string[][]) => {
   return {
     type: SET_RATES_FOR_DAY,
     payload: ratesForSpecificDay

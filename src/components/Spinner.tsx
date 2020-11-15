@@ -25,7 +25,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default ({ cover=false, fixed=false }) => {
+interface SpinnerProps {
+    cover? : boolean,
+    fixed? : boolean
+}
+
+export default ({ cover=false, fixed=false } : SpinnerProps) => {
     const classes = useStyles();
     const positionClass = fixed ? classes.fix : cover ? classes.cover : '';
     return (
