@@ -1,18 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from "redux-devtools-extension";
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import * as serviceWorker from './serviceWorker';
-import rootReducer from './reducers';
 import App from "./App";
-
-const store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
-);
+import store from "./store";
 
 const theme = createMuiTheme({
     spacing: 3,
@@ -27,13 +20,12 @@ const theme = createMuiTheme({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-      <Provider store={store}>
-          <ThemeProvider theme={theme}>
-              <App />
-          </ThemeProvider>
-      </Provider>
-  </React.StrictMode>,
+  <Provider store={store}>
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+          <App />
+      </ThemeProvider>
+  </Provider>,
   document.getElementById('root')
 );
 

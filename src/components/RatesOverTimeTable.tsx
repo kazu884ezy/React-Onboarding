@@ -1,21 +1,19 @@
 import React from 'react';
-import { TableHead, TableBody, TableRow, TableCell} from "@material-ui/core";
+import {TableHead, TableBody, TableRow, TableCell} from "@material-ui/core";
 import StripeTable from "./StripeTable";
 
-// const staticData = [
-//     ['USD', '1.5'],
-//     ['EUR', '2.0'],
-//     ['AUD', '1.1'],
-//     ['JPY', '0.03'],
-// ]
-
-const ExchangeRateTable = ({exchangeRates}) => {
+const RatesOverTimeTable = ({overtimeRates}) => {
     const renderResults = (dataArray: string[][]) => {
+        if(dataArray.length === 0) return;
+
         return dataArray.map(data => {
+            let date = data[0];
+            let currency = Object.keys(data[1]);
+            let value = +Object.values(data[1]);
             return (
-                <TableRow key={data[0]}>
-                    <TableCell>{data[0]}</TableCell>
-                    <TableCell>{(+data[1]).toFixed(2)}</TableCell>
+                <TableRow key={date}>
+                    <TableCell>{date}</TableCell>
+                    <TableCell>{currency} {value.toFixed(2)}</TableCell>
                 </TableRow>
             );
         })
@@ -23,10 +21,10 @@ const ExchangeRateTable = ({exchangeRates}) => {
 
     return (
         <StripeTable>
-            <TableHead >
+            <TableHead>
                 <TableRow>
                     <TableCell>
-                        Currency
+                        Date
                     </TableCell>
                     <TableCell>
                         Value
@@ -34,10 +32,10 @@ const ExchangeRateTable = ({exchangeRates}) => {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {renderResults(exchangeRates)}
+                {renderResults(overtimeRates)}
             </TableBody>
         </StripeTable>
     );
 };
 
-export default ExchangeRateTable;
+export default RatesOverTimeTable;

@@ -9,11 +9,13 @@ import {
 import {MaterialUiPickersDate} from "@material-ui/pickers/typings/date";
 
 
-const DatePicker = () => {
-    const [selectedDate, setSelectedDate] = useState(new Date());
+const DatePicker = ({onChange, initialDate = new Date()}) => {
+    const [selectedDate, setSelectedDate] = useState(initialDate);
 
-    const handleDateChange = (date: MaterialUiPickersDate) => {
-        setSelectedDate(date as Date);
+    const handleDateChange = (muiDate: MaterialUiPickersDate) => {
+        let date = muiDate as Date;
+        setSelectedDate(date);
+        onChange(date);
     };
 
     return (

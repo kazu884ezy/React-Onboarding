@@ -5,24 +5,26 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import { currencies } from "../constants";
 
-const CurrencySelector = () => {
-    const [selectedCurrency, setCurrency] = useState(currencies[0]);
+const CurrencySelector = ({ onChange, initialValue='NZD'}) => {
+    const [selectedCurrency, setCurrency] = useState(initialValue);
 
     const handleChange = (event : React.ChangeEvent<{ value: unknown }>) => {
-        setCurrency(event.target.value as string);
+        let currency = event.target.value as string;
+        setCurrency(currency);
+        onChange(currency);
     }
 
     const renderOptions = () => {
         return currencies.map(currency => {
-            return <MenuItem key={currency} value={currency}>{currency}</MenuItem>
+            return (
+                <MenuItem key={currency} value={currency}>{currency}</MenuItem>
+            )
         });
     }
 
     return (
         <FormControl>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
                 value={selectedCurrency}
                 onChange={handleChange}
             >

@@ -1,5 +1,5 @@
 export const currencies = [
-    'AUS',
+    'AUD',
     'EUR',
     'JPY',
     'NZD',

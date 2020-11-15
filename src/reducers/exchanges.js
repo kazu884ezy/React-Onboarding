@@ -1,8 +1,13 @@
-import {SET_RATES_FOR_DAY, SET_RATES_FOR_PERIOD} from '../actions/types';
+import {
+    SET_RATES_FOR_DAY,
+    SET_SELECTED_CURRENCY,
+    SET_SELECTED_DATE
+} from '../actions/types';
 
 const INITIAL_STATE = {
     ratesForSpecificDay: [],
-    ratesForPeriod: [],
+    selectedCurrency: 'NZD',
+    selectedDate: new Date(),
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -12,10 +17,15 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 ratesForSpecificDay: action.payload
             }
-        case SET_RATES_FOR_PERIOD:
+        case SET_SELECTED_CURRENCY:
             return {
                 ...state,
-                ratesForPeriod: action.payload
+                selectedCurrency: action.payload
+            }
+        case SET_SELECTED_DATE:
+            return {
+                ...state,
+                selectedDate: action.payload
             }
         default:
             return state
